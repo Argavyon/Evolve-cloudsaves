@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 const promiseDbxCloud = import('https://cdn.jsdelivr.net/gh/Argavyon/Cloud-API-with-Dropbox/DropboxCloud.esm.js');
-const CLIENT_SECRET = 'v0o2yze7wrd6p4i';
+const CLIENT_ID = 'v0o2yze7wrd6p4i';
 
 async function autosave() {
     const { DropboxCloud } = await promiseDbxCloud;
@@ -20,7 +20,7 @@ async function autosave() {
     const redirectURI = 'https://oauth-redirect-1tzx3sxxjt93.deno.dev/';
     const appId = 'Auto-save';
     const tokenStorage = { loadToken: () => GM_getValue('Auto-save-RT', null), saveToken: (token) => GM_setValue('Auto-save-RT', token) };
-    const dbx = new DropboxCloud(CLIENT_SECRET, redirectURI, appId, tokenStorage);
+    const dbx = new DropboxCloud(CLIENT_ID, redirectURI, appId, tokenStorage);
 
     async function save() {
         const file = new File([unsafeWindow.exportGame()], 'game-save.b64', { type: 'application/base64' });
