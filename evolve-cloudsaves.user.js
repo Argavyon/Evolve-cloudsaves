@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto-save
 // @namespace    http://argavyon.github.io/
-// @version      2024-12-19
+// @version      1.0.1
 // @description  try to take over the world!
 // @author       Argavyon
 // @match        https://pmotschmann.github.io/Evolve/
@@ -11,7 +11,7 @@
 // @grant        unsafeWindow
 // ==/UserScript==
 
-const promiseDbxCloud = import('https://cdn.jsdelivr.net/gh/Argavyon/Cloud-API-with-Dropbox/DropboxCloud.esm.js');
+const promiseDbxCloud = import('https://cdn.jsdelivr.net/gh/Argavyon/Cloud-API-with-Dropbox@v1.0/DropboxCloud.esm.js');
 const CLIENT_ID = 'v0o2yze7wrd6p4i';
 
 async function autosave() {
