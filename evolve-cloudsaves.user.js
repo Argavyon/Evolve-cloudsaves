@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto-save
 // @namespace    http://argavyon.github.io/
-// @version      1.1.1
+// @version      1.1.2
 // @description  try to take over the world!
 // @author       Argavyon
 // @match        https://pmotschmann.github.io/Evolve/
@@ -101,13 +101,14 @@ async function main() {
     }
 
     async function loadFromCloud() {
-        const downloadResult = await dbx.downloadFile('/game-save.b64');
+        const downloadPromise = dbx.downloadFile('/game-save.b64');
+
         const { promise: contentPromise, resolve, reject } = Promise.withResolvers();
         const reader = new FileReader();
         reader.onload = () => { resolve(reader.result) };
         reader.onerror = () => { reject(reader.error) };
-        reader.readAsText(downloadResult.fileBlob);
 
+        reader.readAsText((await downloadPromise).fileBlob);
         unsafeWindow.importGame(await contentPromise);
 
         console.debug('Loaded from cloud.');
